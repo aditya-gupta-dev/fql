@@ -1,0 +1,15 @@
+[workspace]
+resolver = "2"
+members = [
+    "crates/fql-ast",
+    "crates/fql-parser",
+    "crates/fql-engine",
+    "crates/fql-server",
+    "crates/fql",
+]
+
+[workspace.dependencies]
+fql-ast = { path = "crates/fql-ast" }
+fql-parser = { path = "crates/fql-parser" }
+fql-engine = { path = "crates/fql-engine" }
+fql-server = { path = "crates/fql-server" }

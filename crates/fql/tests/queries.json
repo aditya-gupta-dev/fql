@@ -1,0 +1,37 @@
+[
+  {
+    "query": "select name from tests/fixtures/test_dir",
+    "expected_contains": ["file1.txt", "file2.md", "sub_dir", "symlink1"],
+    "expected_not_contains": ["file3.rs", "size", "type"]
+  },
+  {
+    "query": "select name, size from tests/fixtures/test_dir",
+    "expected_contains": ["file1.txt", "file2.md", "size"],
+    "expected_not_contains": ["path", "type"]
+  },
+  {
+    "query": "select name from tests/fixtures/test_dir where type = f",
+    "expected_contains": ["file1.txt", "file2.md"],
+    "expected_not_contains": ["sub_dir"]
+  },
+  {
+    "query": "select name from tests/fixtures/test_dir where type = d",
+    "expected_contains": ["sub_dir"],
+    "expected_not_contains": ["file1.txt", "file2.md"]
+  },
+  {
+    "query": "select recursive name from tests/fixtures/test_dir",
+    "expected_contains": ["file1.txt", "file2.md", "sub_dir", "file3.rs"],
+    "expected_not_contains": []
+  },
+  {
+    "query": "select recursive name from tests/fixtures/test_dir where type = f",
+    "expected_contains": ["file1.txt", "file2.md", "file3.rs"],
+    "expected_not_contains": ["sub_dir"]
+  },
+  {
+    "query": "select name from tests/fixtures/test_dir where name = file1.txt",
+    "expected_contains": ["file1.txt"],
+    "expected_not_contains": ["file2.md", "sub_dir"]
+  }
+]

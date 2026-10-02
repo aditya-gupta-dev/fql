@@ -1,0 +1,11 @@
+[package]
+name = "fql-parser"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+dirs = "7.0.0"
+fql-ast = { version = "0.1.0", path = "../fql-ast" }
+logos = "0.16.1"
+miette = { version = "7.6.0", features = ["fancy"] }
+thiserror = "2.0.21"

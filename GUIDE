@@ -1,0 +1,37 @@
+Create a cli app called "fql" that is sql for file system. write sql like queries for interacting with filesystem.
+
+## notes
+
+1) output is by default in tabular form
+2) Structure the project in such a way such that it is a single repo for everything cli, the actual engine, extensions for code editors, orms for this.
+3) make sure the project is well structed and write the code in such way that it is well documented & it documents itself doesnt needs comments.
+4) Make sure the project is structured in such a way that future queries can be integrated & ideas can be integrated seemlessly
+5) Follow all the production level standards for the language
+6) Make sure the error messages are well descriptive and are managed & stored properly.
+7) Do version tracking and git commiting accordingly
+8) Main priority is performance
+
+## CLI flags
+
+./fql select... -> normal query for the cli (by default the query is provided like this but if no query is provided then the cli accepts query from stdin like sqlite3 cli)
+./fql --timeout=2s -> each query can only run for 2 seconds
+./fql --output=json|text|default:table -> output type
+./fql --stats -> metrics related to query e.g. time taken to run, status (failed | success),
+./fql --server -> server mode where it accepts queries as requests and returns responses.
+
+## SELECT operations
+
+1) select * from ~ -> select all files & directories from homedir
+2) select recursive * from ~ -> select all files & directories recursively from homedir
+3) select * from ~ where type = f -> select all files from homedir
+4) select * from / where type = d -> select all directories from root dir
+5) select * from /usr/bin where type = s,f -> select files that are symlinks in the /usr/bin directory
+6) select * from /usr/bin where created_at > 10s -> select files that have existed for more than 10s in the /usr/bin directory
+7) select name from Downloads -> select the name of all files & directories in "Downloads" directory
+
+### keypoints
+1) in fifth query name is the property of the file. all the other options are "name,size,modified_at,created_at,type"
+
+# INSERT operations
+
+insert "This is working" into name.txt -> write "This is working" in the name.txt if it doesn't exists create it.
